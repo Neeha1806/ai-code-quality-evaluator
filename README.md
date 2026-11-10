@@ -1,17 +1,16 @@
 # AI Code Quality Evaluator
 
-A beginner-friendly Python project for reviewing Python source code using simple static checks. This project supports practicing code evaluation, testing, and AI-assisted development.
+A beginner-friendly Python **static analysis** project that checks Python files without executing them. Built as a learning portfolio project for reviewing and testing code, including AI-generated code.
 
 ## Features
-- Detects Python syntax errors
+- Reports Python syntax errors
 - Flags bare `except:` clauses
-- Flags calls to `eval()` and `exec()` for manual review
-- Does **not** execute the code being evaluated
-
-This is a learning project, not a comprehensive security scanner or AI model.
+- Flags direct calls to `eval()` and `exec()` for manual review
+- Flags lines longer than 88 characters
+- Includes six unit tests and GitHub Actions CI
 
 ## Run
-Requires Python 3.10+; no third-party packages.
+Requires Python 3.10+; no third-party dependencies.
 
 ```bash
 python evaluator.py examples/sample.py
@@ -19,11 +18,13 @@ python evaluator.py examples/sample.py
 
 ## Test
 ```bash
-python -m unittest -v
+python -m unittest discover -v
 ```
 
-## AI-assisted development log
-Document which AI coding tool you used, the prompts you tried, the suggestions you accepted or rejected, and how you verified results. Only claim work you actually performed.
+On GitHub, check the **Actions** tab for the latest test result.
+
+## AI coding tools and review process
+See [AI_USAGE_LOG.md](AI_USAGE_LOG.md) for a template. Complete it with your own actual prompts, code review, and test results before using this repository in an application.
 
 ## Limitations
-The checks are intentionally basic. A clean report does not guarantee correct or secure code.
+This is a rule-based code checker, **not an AI model**, security audit, or correctness proof. It only detects a few patterns and can miss bugs. `eval` and `exec` checks only cover direct calls by those names.

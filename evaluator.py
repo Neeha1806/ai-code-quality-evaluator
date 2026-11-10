@@ -12,6 +12,10 @@ def evaluate(source: str) -> list[str]:
     except SyntaxError as error:
         return [f"Syntax error on line {error.lineno}: {error.msg}"]
 
+    for number, line in enumerate(source.splitlines(), start=1):
+        if len(line) > 88:
+            findings.append(f"Line {number}: Line exceeds 88 characters ({len(line)}).")
+
     for node in ast.walk(tree):
         if isinstance(node, ast.ExceptHandler) and node.type is None:
             findings.append(f"Line {node.lineno}: Avoid bare except clauses.")
